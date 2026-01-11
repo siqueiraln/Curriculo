@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo - Lucas Siqueira</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset e Configurações Globais */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f3f4f6;
+            color: #334155;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Layout A4 */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            background: white;
+            display: flex;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            overflow: hidden; /* Garante que a sidebar preencha altura */
+        }
+
+        /* Sidebar (Esquerda) */
+        .sidebar {
+            width: 30%; /* Aprox 6.3cm */
+            background-color: #0f172a; /* bg-slate-900 */
+            color: #e2e8f0;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .sidebar img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #334155;
+            margin-bottom: 25px;
+            background-color: #cbd5e1; /* Placeholder caso a imagem não carregue */
+        }
+
+        .sidebar-section {
+            width: 100%;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .sidebar h3 {
+            color: #94a3b8;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 5px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            word-break: break-all;
+        }
+
+        .contact-item svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 10px;
+            fill: #94a3b8;
+            flex-shrink: 0;
+        }
+
+        .contact-item a {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background-color: #1e293b;
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .soft-skills ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .soft-skills li {
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .soft-skills li::before {
+            content: "•";
+            color: #38bdf8;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        /* Conteúdo Principal (Direita) */
+        .main-content {
+            width: 70%;
+            padding: 40px;
+            background-color: #fff;
+        }
+
+        header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: #0f172a;
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        h2.role-title {
+            color: #3b82f6; /* Azul destaque */
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .summary {
+            font-size: 0.95rem;
+            color: #475569;
+            text-align: justify;
+        }
+
+        /* Seções do Main */
+        .section-title {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            color: #0f172a;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+            margin-left: 15px;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 25px;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 5px;
+        }
+
+        .job-title {
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 1rem;
+        }
+
+        .company-name {
+            font-weight: 500;
+            color: #3b82f6;
+        }
+
+        .job-date {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .job-details ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 8px;
+        }
+
+        .job-details li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 4px;
+            font-size: 0.92rem;
+            color: #475569;
+        }
+
+        .job-details li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: #94a3b8;
+        }
+
+        .compact-list p {
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .download-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #3b82f6;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background 0.2s;
+            z-index: 1000;
+        }
+
+        .download-btn:hover {
+            background-color: #2563eb;
+        }
+
+        /* Mobile Responsiveness */
+        @media screen and (max-width: 768px) {
+            .page {
+                width: 100%;
+                flex-direction: column;
+                height: auto;
+                margin: 0;
+            }
+            .sidebar {
+                width: 100%;
+                padding: 20px;
+            }
+            .main-content {
+                width: 100%;
+                padding: 20px;
+            }
+            h1 { font-size: 1.8rem; }
+            .sidebar img { width: 100px; height: 100px; }
+        }
+
+        /* Configurações de Impressão */
+        @media print {
+            @page {
+                margin: 0;
+                size: A4;
+            }
+            
+            body {
+                background: white;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .page {
+                width: 100%;
+                height: auto; /* Permite crescer se necessário, mas idealmente cabe em 1 pág */
+                min-height: 100vh;
+                margin: 0;
+                box-shadow: none;
+                display: flex; /* Força o flex no print */
+            }
+
+            .sidebar {
+                background-color: #0f172a !important; /* Força a cor na impressão */
+                color: #e2e8f0 !important;
+                min-height: 100vh; /* Garante altura total */
+            }
+
+            .download-btn {
+                display: none;
+            }
+
+            /* Evita quebra de página dentro de itens importantes */
+            .experience-item, .education-item {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="download-btn" onclick="window.print()">Salvar PDF / Imprimir</button>
+
+    <div class="page">
+        <!-- Coluna Esquerda (Sidebar) -->
+        <aside class="sidebar">
+            <img src="foto-perfil.png" alt="Foto de Lucas Siqueira">
+            
+            <div class="sidebar-section">
+                <h3>Contatos</h3>
+                <div class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    Simão Dias - SE
+                </div>
+                <div class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <a href="mailto:lucas.sikeira78@gmail.com">lucas.sikeira78@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    (79) 99897-4970
+                </div>
+                <div class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                    <a href="https://linkedin.com/in/lucas-siqueira-1a5bb51b2" target="_blank">/in/lucas-siqueira</a>
+                </div>
+                <div class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    <a href="#">Link do Portfólio</a>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Hard Skills</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Bubble.io</span>
+                    <span class="skill-tag">N8N</span>
+                    <span class="skill-tag">Supabase</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">API Integration</span>
+                    <span class="skill-tag">ZapSign / Stripe</span>
+                    <span class="skill-tag">Prompt Engineering</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Soft Skills</h3>
+                <div class="soft-skills">
+                    <ul>
+                        <li>Resolução de Problemas</li>
+                        <li>Adaptabilidade</li>
+                        <li>Inglês Intermediário/Técnico</li>
+                        <li>Visão Estratégica</li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Coluna Direita (Conteúdo Principal) -->
+        <main class="main-content">
+            <header>
+                <h1>Lucas Siqueira</h1>
+                <h2 class="role-title">Desenvolvedor No-Code | Especialista em Automação & IA</h2>
+                <br>
+                <p class="summary">
+                    Desenvolvedor No-Code focado em performance e escalabilidade. Mantenho uma rotina de estudos constantes para entregar soluções que resolvem problemas reais, sem gambiarras. Com background multidisciplinar (do Agronegócio aos Esports Internacionais), trago adaptabilidade e visão estratégica para somar ao time, aprender com novos desafios e contribuir para o crescimento sólido do negócio.
+                </p>
+            </header>
+
+            <section>
+                <div class="section-title">Experiência Profissional</div>
+
+                <!-- InfoEduc -->
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <span class="job-title">Dev Junior NoCode</span> | <span class="company-name">InfoEduc</span>
+                        </div>
+                        <span class="job-date">Jul 2025 - Atual</span>
+                    </div>
+                    <div class="job-details">
+                        <ul>
+                            <li>Desenvolvimento e manutenção de aplicações no-code usando Bubble.</li>
+                            <li>Otimização de workflows e queries de busca para melhor performance.</li>
+                            <li>Integração com APIs externas (Google Apps, ZapSign, Stripe, Asaas).</li>
+                            <li>Criação de automações e fluxos personalizados usando N8N.</li>
+                            <li>Desenvolvimento de scripts customizados em JavaScript para complementar funcionalidades.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Netshoes Miners -->
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <span class="job-title">Assistente Técnico</span> | <span class="company-name">Netshoes Miners</span>
+                        </div>
+                        <span class="job-date">2021 - 2024</span>
+                    </div>
+                    <div class="job-details">
+                        <ul>
+                            <li>Atuação em ambiente de alta performance (Esports).</li>
+                            <li>Gestão de dados e criação de planilhas para análise de equipe.</li>
+                            <li>Suporte logístico e coordenação de rotina técnica.</li>
+                            <li>Vivência internacional e adaptação cultural sob pressão.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Outras Experiências -->
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <span class="job-title">Histórico Profissional Anterior</span>
+                        </div>
+                        <span class="job-date">2017 - 2020</span>
+                    </div>
+                    <div class="job-details compact-list">
+                        <p><strong>Ação Agrícola (2020):</strong> Auxiliar Administrativo - Organização e georreferenciamento.</p>
+                        <p><strong>Adecom (2018-2019):</strong> Auxiliar Administrativo - Projetos comunitários e dados.</p>
+                        <p><strong>API Soluções (2017):</strong> Técnico em TI - Manutenção e automação comercial.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-title">Educação</div>
+
+                <div class="education-item">
+                    <div class="job-header">
+                        <div>
+                            <span class="job-title">Especialização em No-Code/Low-Code</span>
+                        </div>
+                        <span class="job-date">2025</span>
+                    </div>
+                    <div class="job-details">
+                        <p>Comunidade Sem Codar (200h) - Foco em Bubble, FlutterFlow e Supabase.</p>
+                    </div>
+                </div>
+
+                <div class="education-item">
+                    <div class="job-header">
+                        <div>
+                            <span class="job-title">Técnico em Agronegócio</span>
+                        </div>
+                        <span class="job-date">2017</span>
+                    </div>
+                    <div class="job-details">
+                        <p>Senar</p>
+                    </div>
+                </div>
+                
+                <div class="education-item">
+                    <div class="job-header">
+                        <div>
+                            <span class="job-title">Bacharelado em Agronomia</span>
+                        </div>
+                        <span class="job-date">Incompleto</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>
